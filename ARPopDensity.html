@@ -11,10 +11,6 @@
     <h1 align="center"><b>Arkansas Population Density, 2018</b></h1>
     <svg width="1300" height="1100"></svg>
 
-    <button id="changeLegendColor" onclick="changeLegendColor()">Change Legend Color</button>
-    <button id="toggleStateBoundary" onclick="toggleStateBoundary()">Toggle State Boundary</button>
-    <button id="toggleCensusTractBoundary" onclick="toggleCensusTractBoundary()">Toggle Census Tract Boundary</button>
-
     <script>
         var svg = d3.select("svg"),
             width = +svg.attr("width"),
@@ -34,15 +30,6 @@
         var g = svg.append("g")
             .attr("class", "key")
             .attr("transform", "translate(270,760)");
-        
-        d3.select("#changeLegendColor")
-            .attr("style", "height:35px;width:250px;position:absolute;left:47%;bottom:52%");
-            
-        d3.select("#toggleStateBoundary")
-            .attr("style", "height:35px;width:250px;position:absolute;left:1%;bottom:40%");
-        
-        d3.select("#toggleCensusTractBoundary")
-            .attr("style", "height:35px;width:250px;position:absolute;left:20%;bottom:40%");
 
         g.selectAll("rect")
             .data(color.range().map(function(d) {
@@ -141,8 +128,8 @@
             }
             tractCount = tractCount + 1;
         }
-        
-        function toggleStateBoundary(){
+
+        function toggleStateBoundary() {
             if (stateCount % 2 == 0) {
                 d3.json("ar-border-topo.json", function(error, topology) {
                     if (error) throw error;
@@ -163,8 +150,27 @@
 
     </script>
 
+    <div class="buttons">
+        <button id="toggleStateBoundary" onclick="toggleStateBoundary()">Toggle State Boundary</button>
+        <button id="toggleCensusTractBoundary" onclick="toggleCensusTractBoundary()">Toggle Census Tract Boundary</button>
+        <span length="100px"></span>
+        <button id="changeLegendColor" onclick="changeLegendColor()">Change Legend Color</button>
+    </div>
+
+    <script>
+        d3.select("#changeLegendColor")
+            .attr("style", "height:35px;width:250px");
+
+        d3.select("#toggleStateBoundary")
+            .attr("style", "height:35px;width:250px");
+
+        d3.select("#toggleCensusTractBoundary")
+            .attr("style", "height:35px;width:250px");
+
+    </script>
+
     <div class="info">
-        <h2>Github Link: </h2>
+        <h2>Github Link: <a href="https://ziyehan.github.io/CMPS263-PA6/ARPopDensity.html">https://ziyehan.github.io/CMPS263-PA6/ARPopDensity.html</a></h2>
         <h2>Created by: Ziye Han </h2>
         <h2>Instructor: Suresh Lodha</h2>
         <h2>CMPS 263: Data programming for Visualization</h2>
